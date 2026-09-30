@@ -30,7 +30,7 @@ remote_log("hello %d", n);              // text to the PC's console
 | `usb_descriptors.c`, `usb_descriptors_config.h`, `tusb_config.h` | USB setup; normally left alone |
 | `remote_config.h` | The library's tunables (event queue size, key table range) |
 | `hid_keymap.h/.c` | Key code (USB HID) to ASCII and back; names for special keys |
-| `picocalc_keys.h/.c`, `picocalc_keys_config.h` | Optional: the PicoCalc's own keyboard as key events, plus `~` = reboot to BOOTSEL. Needs picocalc-text-starter's south-bridge driver |
+| `picocalc_keys.h/.c`, `picocalc_keys_config.h` | Optional: the PicoCalc's own keyboard as key events, plus `~` = reboot to BOOTSEL. Needs picocalc-text-starter's south-bridge driver. **Do not use it together with the starter's `keyboard.c`**: both read the same key queue and would split the keystrokes between them |
 | `remote.cmake` | `remote_add_to_target()` and `remote_add_picocalc_keys()` |
 
 Needs only the Pico SDK. Author: Thomas Dzubin.

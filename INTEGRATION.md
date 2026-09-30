@@ -44,7 +44,7 @@ Copy the whole **`remote/`** folder into your project. It contains:
 | `usb_descriptors.c`, `tusb_config.h` | The USB setup that makes the PicoCalc appear as a serial port |
 | `hid_keymap.c/.h` | Turns key codes into ASCII characters (and back), with names for the special keys |
 | `remote_config.h`, `usb_descriptors_config.h` | The library's constants (queue size, USB layout). Normally left alone |
-| `picocalc_keys.c/.h`, `picocalc_keys_config.h` | *Optional.* Reads the PicoCalc's own keyboard as the same kind of key events |
+| `picocalc_keys.c/.h`, `picocalc_keys_config.h` | *Optional.* Reads the PicoCalc's own keyboard as the same kind of key events. **Do not add it if your program already uses the text starter's `keyboard.c`**: the two would compete for the same keystrokes (see *Things to watch out for*) |
 | `remote.cmake` | Two-line CMake helper |
 
 The library needs **only the Pico SDK**. It does not need picocalc-text-starter,
@@ -325,6 +325,16 @@ non-printing ones and `hid_to_ascii()` for everything printable.
 - **Events can be dropped.** The queue holds 32 events. Mouse movement is merged into the previous mouse-move event, and if the queue is still full, queued mouse movement is given up before any key or button event, so a key-up or button-up is lost only if the queue is full of key and button events. If your loop is too slow
   to drain it, the newest events are lost. Reading all events every pass, and adding
   up mouse movement, avoids this.
+- **Your PicoCalc keyboard code is untouched.** The library only drives the USB serial
+  port. It never reads the PicoCalc's keyboard, the I2C bus or the south bridge, so the
+  keyboard handling your program already has keeps working exactly as before, with or
+  without a PC connected.
+- **Do not combine `picocalc_keys` with the starter's keyboard driver.** The optional
+  `picocalc_keys` module reads the keyboard controller's key queue directly, and so does
+  the text starter's `keyboard.c` (by Blair Leduc). Using both, each takes some of the
+  keystrokes and the other never sees them. Pick one: keep the starter's driver (and do
+  not add `picocalc_keys`), or use `picocalc_keys` instead of it. The core library,
+  `remote_add_to_target()`, does not include `picocalc_keys`.
 - **Nothing blocks.** With no PC connected, no events arrive and `remote_log()` /
   `remote_send()` do nothing. Your program runs the same either way.
 - **Mouse movement is relative**, and there is no key repeat from the PC. See the
