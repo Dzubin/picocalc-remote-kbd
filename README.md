@@ -110,16 +110,30 @@ The relay console can also log what goes through: press **Ctrl+Alt+L** (with the
 The window border is the status colour: blue = idle, green = capturing, orange =
 PicoCalc keys are typing into the PC, red = serial link lost. If the link is lost (USB cable pulled out, PicoCalc reset or re-flashed) the relay keeps running and looks for the PicoCalc again every second, reconnecting by itself when it reappears; you just click the window to capture again.
 
-Which firmware to flash:
+### Which firmware file do I flash?
 
-- **Example** (`picocalc-remote-kbd-example-<chip>.uf2`): sends every key and mouse
-  event it receives straight back, so the relay's console shows lines like
-  `[PicoCalc] KEY usage=0x04 down`, plus a once-a-second `[PicoCalc] heartbeat`
-  line. No display needed.
-- **Cursor demo** (`picocalc-remote-kbd-cursor-<chip>.uf2`): an arrow that follows the
-  mouse and a text area you can type into from either keyboard, with a live copy of
-  the PicoCalc's screen in the relay window. The PicoCalc's own keys are also sent
-  to the relay.
+Four firmware files are built, but you flash only **one**. Two choices:
+
+**1. Which chip is in your PicoCalc?** `RP2040` or `RP2350`. Each chip needs its own
+build, and the wrong one will not work. Hold BOOTSEL while powering on: the drive that
+appears is called `RPI-RP2` for an RP2040, or `RP2350` for an RP2350.
+
+**2. Which program?**
+
+- **Cursor demo** (`picocalc-remote-kbd-cursor-<chip>.uf2`): the one most people want.
+  An arrow that follows the mouse and a text area you can type into from either
+  keyboard, with a live copy of the PicoCalc's screen in the relay window. The
+  PicoCalc's own keys are also sent to the relay.
+- **Example** (`picocalc-remote-kbd-example-<chip>.uf2`): the smallest possible program,
+  with no display. It sends every key and mouse event it receives straight back, so the
+  relay's console shows lines like `[PicoCalc] KEY usage=0x04 down`, plus a
+  once-a-second `[PicoCalc] heartbeat` line. It shows the minimum code needed to use the
+  library.
+
+| | RP2040 | RP2350 |
+|---|--------|--------|
+| **Cursor demo** | `picocalc-remote-kbd-cursor-RP2040.uf2` | `picocalc-remote-kbd-cursor-RP2350.uf2` |
+| **Example** | `picocalc-remote-kbd-example-RP2040.uf2` | `picocalc-remote-kbd-example-RP2350.uf2` |
 
 ## Typing the PicoCalc's keys into the PC (Windows)
 
