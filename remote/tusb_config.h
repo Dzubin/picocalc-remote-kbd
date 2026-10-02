@@ -37,7 +37,7 @@ extern "C"
 #define CFG_TUSB_DEBUG 0
 #endif
 
-/* Device mode only -- this project never acts as a USB host. */
+/* Device mode only; this project never acts as a USB host. */
 #define CFG_TUD_ENABLED 1
 #define CFG_TUH_ENABLED 0
 
@@ -65,7 +65,7 @@ extern "C"
 #define CFG_TUD_CDC_RX_BUFSIZE 256
 #define CFG_TUD_CDC_TX_BUFSIZE 1024
 
-/* CDC endpoint transfer buffer size -- matches the endpoint size used in
+/* CDC endpoint transfer buffer size; matches the endpoint size used in
  * usb_descriptors.c's TUD_CDC_DESCRIPTOR(). */
 #define CFG_TUD_CDC_EP_BUFSIZE 64
 

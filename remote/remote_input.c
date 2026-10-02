@@ -131,7 +131,7 @@ static void handle_packet(const remote_proto_packet_t *pkt)
         break;
 
     default:
-        break; /* unknown, or a desktop-bound type like TEXT_LOG -- ignore */
+        break; /* unknown, or a desktop-bound type like TEXT_LOG; ignore */
     }
 }
 
@@ -190,7 +190,7 @@ void remote_log(const char *fmt, ...)
     if (length > (int)sizeof(text) - 1)
         length = (int)sizeof(text) - 1;
 
-    /* Chunked into REMOTE_PROTO_MAX_PAYLOAD-sized pieces -- only matters
+    /* Chunked into REMOTE_PROTO_MAX_PAYLOAD-sized pieces; only matters
      * for a line longer than that; most remote_log() calls fit in one. */
     uint8_t frame[REMOTE_PROTO_MAX_PAYLOAD + 5];
     int offset = 0;
@@ -224,7 +224,7 @@ bool remote_send(const uint8_t *frame, uint8_t len)
  * TinyUSB device callbacks.
  *
  * Defined unconditionally (even as empty stubs) rather than relying on
- * them being weak symbols in this TinyUSB version -- matches convention
+ * them being weak symbols in this TinyUSB version; matches convention
  * in every pico-sdk TinyUSB example. RX is drained by remote_input_task()
  * via tud_cdc_read() instead of reacting to tud_cdc_rx_cb() directly.
  * -------------------------------------------------------------------- */
