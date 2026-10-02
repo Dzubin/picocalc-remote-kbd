@@ -10,4 +10,4 @@
  * Author: Thomas Dzubin
  */
 
-#define REMOTE_KBD_VERSION "V0.01A"
+#define REMOTE_KBD_VERSION "V0.01B"
