@@ -65,8 +65,8 @@ set:
 This builds two firmwares, each named with the chip (`RP2040` or `RP2350`) and also
 copied to the top-level folder:
 
-- `picocalc-remote-kbd-example-<chip>.uf2` from `examples/remote_test.c`
-- `picocalc-remote-kbd-cursor-<chip>.uf2` from `demo/cursor_demo.c`
+- `remote-kbd-example-<chip>.uf2` from `examples/remote_test.c`
+- `remote-kbd-cursor-<chip>.uf2` from `demo/cursor_demo.c`
 
 Flash by copying a `.uf2` to the `RPI-RP2` drive: hold BOOTSEL on power-up, or press
 `~` (SHIFT + backtick) on the PicoCalc while one of these firmwares is running.
@@ -76,7 +76,7 @@ Flash by copying a `.uf2` to the `RPI-RP2` drive: hold BOOTSEL on power-up, or p
     cmake -S desktop -B build-windows -G Ninja
     ninja -C build-windows
 
-Output: `picocalc-remote-kbd-relay-Windows.exe` in the top-level folder. SDL2 is
+Output: `remote-kbd-relay-Windows.exe` in the top-level folder. SDL2 is
 linked statically, so it is one self-contained file. Add `-DRELAY_WITH_MIRROR=OFF`
 to the first command for a relay without the demo's screen drawing.
 
@@ -85,7 +85,7 @@ to the first command for a relay without the demo's screen drawing.
     cmake -S desktop -B build-linux
     cmake --build build-linux
 
-Output: `picocalc-remote-kbd-relay-Linux` plus `libSDL2-2.0.so.0` in the
+Output: `remote-kbd-relay-Linux` plus `libSDL2-2.0.so.0` in the
 top-level folder. SDL2 is linked dynamically; keep the two files side by side
 (the executable finds the library through an `$ORIGIN` run-path).
 
@@ -96,10 +96,10 @@ top-level folder. SDL2 is linked dynamically; keep the two files side by side
 2. Start the relay. With no argument it finds the PicoCalc by its USB ID
    (`F00F:F00D`); you can also name the port yourself:
 
-       picocalc-remote-kbd-relay-Windows.exe            (auto-detect)
-       picocalc-remote-kbd-relay-Windows.exe COM5
-       ./picocalc-remote-kbd-relay-Linux                (auto-detect)
-       ./picocalc-remote-kbd-relay-Linux /dev/ttyACM0
+       remote-kbd-relay-Windows.exe            (auto-detect)
+       remote-kbd-relay-Windows.exe COM5
+       ./remote-kbd-relay-Linux                (auto-detect)
+       ./remote-kbd-relay-Linux /dev/ttyACM0
 
 3. Click the relay window to start capturing. Keys and mouse movement now go to the
    PicoCalc. Press **Ctrl+Alt+G** to release (the window also releases if it loses
@@ -120,11 +120,11 @@ appears is called `RPI-RP2` for an RP2040, or `RP2350` for an RP2350.
 
 **2. Which program?**
 
-- **Cursor demo** (`picocalc-remote-kbd-cursor-<chip>.uf2`): the one most people want.
+- **Cursor demo** (`remote-kbd-cursor-<chip>.uf2`): the one most people want.
   An arrow that follows the mouse and a text area you can type into from either
   keyboard, with a live copy of the PicoCalc's screen in the relay window. The
   PicoCalc's own keys are also sent to the relay.
-- **Example** (`picocalc-remote-kbd-example-<chip>.uf2`): the smallest possible program,
+- **Example** (`remote-kbd-example-<chip>.uf2`): the smallest possible program,
   with no display. It sends every key and mouse event it receives straight back, so the
   relay's console shows lines like `[PicoCalc] KEY usage=0x04 down`, plus a
   once-a-second `[PicoCalc] heartbeat` line. It shows the minimum code needed to use the
@@ -132,8 +132,8 @@ appears is called `RPI-RP2` for an RP2040, or `RP2350` for an RP2350.
 
 | | RP2040 | RP2350 |
 |---|--------|--------|
-| **Cursor demo** | `picocalc-remote-kbd-cursor-RP2040.uf2` | `picocalc-remote-kbd-cursor-RP2350.uf2` |
-| **Example** | `picocalc-remote-kbd-example-RP2040.uf2` | `picocalc-remote-kbd-example-RP2350.uf2` |
+| **Cursor demo** | `remote-kbd-cursor-RP2040.uf2` | `remote-kbd-cursor-RP2350.uf2` |
+| **Example** | `remote-kbd-example-RP2040.uf2` | `remote-kbd-example-RP2350.uf2` |
 
 ## Typing the PicoCalc's keys into the PC (Windows)
 

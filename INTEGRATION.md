@@ -106,7 +106,7 @@ int main(void)
 Build and flash as usual. Then on the PC, run the relay:
 
 ```
-picocalc-remote-kbd-relay-Windows.exe
+remote-kbd-relay-Windows.exe
 ```
 
 It finds the PicoCalc by itself. **Click its window**, and your keyboard and
@@ -406,9 +406,9 @@ it does not know what your program does. Give people the prebuilt relay together
 with your firmware, or build it from source (see `README.md`).
 
 ```
-picocalc-remote-kbd-relay-Windows.exe            (finds the PicoCalc by USB ID)
-picocalc-remote-kbd-relay-Windows.exe COM5       (or name the port)
-./picocalc-remote-kbd-relay-Linux /dev/ttyACM0
+remote-kbd-relay-Windows.exe            (finds the PicoCalc by USB ID)
+remote-kbd-relay-Windows.exe COM5       (or name the port)
+./remote-kbd-relay-Linux /dev/ttyACM0
 ```
 
 | Key | What it does |

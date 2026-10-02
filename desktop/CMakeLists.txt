@@ -6,13 +6,13 @@
 # Build on Windows (MSYS2 UCRT64 shell with SDL2 installed):
 #     cmake -S desktop -B build-windows -G Ninja
 #     ninja -C build-windows
-# Output: picocalc-remote-kbd-relay-Windows.exe, copied to the top-level
+# Output: remote-kbd-relay-Windows.exe, copied to the top-level
 # project folder. SDL2 is linked statically: one self-contained file.
 #
 # Build on Linux (needs the SDL2 development package, e.g. libsdl2-dev):
 #     cmake -S desktop -B build-linux
 #     cmake --build build-linux
-# Output: picocalc-remote-kbd-relay-Linux, copied to the top-level project
+# Output: remote-kbd-relay-Linux, copied to the top-level project
 # folder together with libSDL2-2.0.so.0 (keep the two files side by side; the
 # executable finds the library through an $ORIGIN run-path).
 
@@ -27,7 +27,7 @@ if(WIN32)
 else()
     set(PLATFORM_NAME Linux)
 endif()
-set(APP_NAME picocalc-remote-kbd-relay-${PLATFORM_NAME})
+set(APP_NAME remote-kbd-relay-${PLATFORM_NAME})
 
 get_filename_component(TOP ${CMAKE_CURRENT_LIST_DIR}/.. ABSOLUTE)
 

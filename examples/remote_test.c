@@ -15,7 +15,7 @@
  * block is a convenience for development, not part of the library proper.
  *
  * Build it with the rest of the project (see README.md); output
- * picocalc-remote-kbd-example-<chip>.uf2.
+ * remote-kbd-example-<chip>.uf2.
  *
  * Author: Thomas Dzubin
  */

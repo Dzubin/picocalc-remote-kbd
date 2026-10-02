@@ -52,7 +52,7 @@ include(remote/remote.cmake)
 # driver.
 set(STARTER ${CMAKE_CURRENT_LIST_DIR}/picocalc-text-starter-main)
 
-# The chip is part of every output file name (picocalc-remote-kbd-example-RP2040.uf2 /
+# The chip is part of every output file name (remote-kbd-example-RP2040.uf2 /
 # -RP2350.uf2, and the matching .elf/.bin/.hex), so a file always says which
 # board it was built for.
 if(PICO_PLATFORM MATCHES "^rp2040")
@@ -67,7 +67,9 @@ endif()
 # outputs, and the .uf2 copied to the top-level folder so the RP2040 and
 # RP2350 builds can sit side by side.
 function(finish_firmware target)
-    set_target_properties(${target} PROPERTIES OUTPUT_NAME ${target}-${CHIP_NAME})
+    # the output file name is the target name without its "picocalc-" prefix
+    string(REGEX REPLACE "^picocalc-" "" output_base ${target})
+    set_target_properties(${target} PROPERTIES OUTPUT_NAME ${output_base}-${CHIP_NAME})
     pico_add_extra_outputs(${target})
     add_custom_command(TARGET ${target} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
