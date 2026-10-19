@@ -178,4 +178,5 @@ The vendored drivers in `picocalc-text-starter-main/` (LCD, fonts, south-bridge
 keyboard) are from picocalc-text-starter by Blair Leduc, also under the MIT
 License; his license file is included there unchanged
 ([picocalc-text-starter-main/LICENSE](picocalc-text-starter-main/LICENSE)). The
-library in `remote/` does not use them.
+library in `remote/` does not use them. They are his code of 2026-10-18 (commit `85a002e`) with one local
+change: `lcd_putstr()` in `lcd.c` cuts a string off at the right edge of the display.
